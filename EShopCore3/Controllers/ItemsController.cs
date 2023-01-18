@@ -40,7 +40,7 @@ namespace EShopCore3.Controllers
             {
                 pg = 1;
             }
-///
+//////////
             int rescCount = items.Count();
             var pager = new Pager(rescCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
