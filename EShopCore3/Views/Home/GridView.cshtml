@@ -1,0 +1,83 @@
+﻿<div class="row">
+    @{
+        Pager pager = new Pager();
+        int pageNo = 0;
+
+        if (ViewBag.Pager != null)
+        {
+            pager = ViewBag.Pager;
+            pageNo = pager.CurrentPage;
+        }
+    }
+    <partial name="_pagersearch" model="@pager" />
+    @{
+        var searchItems = new List<EShopCore3.Models.Item>();
+        var itemsSession = Context.Session.Get<List<Item>>("SearchItem");
+        if (itemsSession != null)
+        {
+            searchItems = itemsSession;
+        }
+        foreach (var item in searchItems)
+        {
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="single-product">
+                    <div class="product-img">
+                        <a href="/Home/CurrentModel?id=@item.ItemId">
+                            <img class="default-img" src="@item.URL1" alt="#">
+                            <img class="hover-img" src="@item.HOVERURL2" alt="#">
+                            @if (item.Promotion == 0)
+                            {
+                                <span></span>
+                            }
+                            else if (item.Promotion > 0)
+                            {
+                                <span class="price-dec">@item.Promotion % Off</span>
+                            }
+                            else if (item.Promotion == -1)
+                            {
+                                <span class="out-of-stock">HOT</span>
+                            }
+                            else if (item.Promotion == -2)
+                            {
+                                <span class="out-of-stock">Out of stock</span>
+                            }
+                            else if (item.Promotion == -3)
+                            {
+                                <span class="new">New</span>
+                            }
+                        </a>
+                        <div class="button-head">
+                            <div class="product-action">
+                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                            </div>
+                            <div class="product-action-2">
+                                <input type="button" name="AddToCart" value="Add to Cart" class="btn btn-primary" itemid="@item.ItemId" id="btnAddToCart" onclick="AddToCart(this)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3><a href="product-details.html">@item.ItemName</a></h3>
+                        @{
+                            if (item.PromoPrice != 0)
+                            {
+                                <div class="product-price">
+                                    <span class="old">$@item.ItemPrice</span>
+                                    <span class="text-danger">$@item.PromoPrice</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="product-price">
+                                    <span>@item.ItemPrice</span>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    <partial name="_pagersearch" model="@pager" />
+</div>

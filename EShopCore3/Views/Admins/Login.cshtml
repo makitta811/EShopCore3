@@ -1,0 +1,218 @@
+﻿@model Admin
+<html lang="bg" xml:lang="bg" class="sr">
+<head>
+    <title>CloudCart</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Language" content="bg">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="" name="description">
+    <meta name="author" content="CloudCart LLC">
+
+    <!-- Social media tags -->
+    <meta property="og:locale" content="bg">
+    <meta property="og:site_name" content="CloudCart">
+    <meta property="og:title" content="CloudCart">
+    <meta property="og:url" content="https://zora.bg/admin/login">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="">
+
+
+    <link rel="publisher" href="https://plus.google.com/+CloudCart">
+
+    <meta name="twitter:account_id" content="2611680409">
+    <meta name="twitter:text:title" content="CloudCart">
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Robots control -->
+    <!-- Favicons -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700|Roboto:300,400,500,700&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://cloudcart.com/css/app.css?1653934286" rel="stylesheet">
+    <link href="https://cloudcart.com/css/style.css?1653934286" rel="stylesheet">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="vimmAOIM5NAUJAKwUGLkKFlwaW42gXKEtDfIPvp9">
+    <style>
+        .question-step {
+            transition: opacity .7s,visibility .7s,position .7s
+        }
+
+            .question-step.inactive, .question-step.inactive.open {
+                opacity: 0;
+                position: absolute;
+                visibility: hidden
+            }
+
+            .question-step.active {
+                position: absolute
+            }
+
+                .question-step.active.open {
+                    position: static
+                }
+
+        .cc-popup__entry {
+            transition: .5s
+        }
+
+        .cc-form .cc-form__row.cc-form__row--questions {
+            display: inline
+        }
+
+            .cc-form .cc-form__row.cc-form__row--questions .cc-field {
+                max-width: 300px;
+                width: auto
+            }
+
+        .select2-container--default .select2-results > .select2-results__options {
+            max-height: 32rem
+        }
+
+        .questions-wrap .select2-dropdown {
+            min-width: 33rem
+        }
+
+        .question-step.industry {
+            margin-top: 20px
+        }
+    </style>
+</head>
+<body class="" style="height: 100%;" data-aos-easing="ease" data-aos-duration="800" data-aos-delay="0">
+    <div class="wrapper wrapper-dark" id="app">
+        <header class="cc-header cc-header--small js-header cc-header--alt">
+            <div class="cc-shell">
+                <div class="cc-header__inner">
+                    <div class="cc-header__content">
+                        <a href="//cloudcart.com/bg" class="cc-logo cc-header__logo">
+                            <img src="https://cloudcart.com/assets/images/svg/logo.svg?1653934286" alt="Logo" width="200" height="37">
+                        </a>
+                    </div><!-- /.cc-header__content -->
+                </div><!-- /.cc-header__inner -->
+            </div><!-- /.cc-shell -->
+        </header><!-- /.cc-header -->
+
+        <div class="cc-main cc-main--dark cc-main--login">
+            <figure class="cc-main__element"></figure><!-- /.cc-main__element -->
+
+            @using (Html.BeginForm("Login", "Admins", FormMethod.Post))
+            {
+                <section class="cc-section-login">
+                    <div class="cc-shell">
+                        <div class="cc-section__inner">
+                            <div class="cc-section__content">
+                                <figure class="cc-section__image aos-init aos-animate" data-aos="fade-left">
+                                    <img src="https://cloudcart.com/assets/images/temp/login-01.webp?1653934286" alt="Image" width="682" height="450">
+                                </figure><!-- /.cc-section__image -->
+                            </div><!-- /.cc-section__content -->
+
+                            <aside class="cc-section__aside">
+                                <div class="cc-form-login">
+                                    <form method="POST" action="https://zora.bg/admin/login" accept-charset="UTF-8" class="cc-form js-ajax-form">
+                                        <input name="_token" type="hidden" value="vimmAOIM5NAUJAKwUGLkKFlwaW42gXKEtDfIPvp9">
+                                        <div class="cc-form__head">
+                                            <h4>
+                                                Вход към магазина
+                                            </h4>
+                                        </div><!-- /.cc-form__head -->
+
+                                        <div class="cc-form__body">
+                                            <div class="cc-form__row">
+                                                <label for="formAdminName" class="cc-form__label">Admin</label>
+
+                                                <div class="cc-form__controls">
+                                                    <figure class="cc-form__icon">
+                                                        <i class="fal fa-user-circle"></i>
+                                                    </figure><!-- /.cc-form__icon -->
+
+                                                    <input id="formAdminName" type="text" name="AdminName" required="" class="cc-field cc-field--icon cc-form__field">
+                                                </div><!-- /.cc-form__controls -->
+                                            </div><!-- /.cc-form__row -->
+
+                                            <div class="cc-form__row">
+                                                <label for="formAdminPassword" class="cc-form__label">Password</label>
+
+                                                <div class="cc-form__controls">
+                                                    <figure class="cc-form__icon">
+                                                        <i class="fal fa-lock-alt"></i>
+                                                    </figure><!-- /.cc-form__icon -->
+
+                                                    <input id="formAdminPassword" type="password" name="AdminPassword" required="" class="cc-field cc-field--icon cc-form__field">
+                                                </div><!-- /.cc-form__controls -->
+                                            </div><!-- /.cc-form__row -->
+                                            <div class="text-danger">
+                                                @ViewBag.ErrorMessage
+                                            </div>
+                                        </div><!-- /.cc-form__body -->
+
+                                        <div class="cc-form__actions">
+                                            <button type="submit" class="cc-form__btn cc-btn cc-btn--orange cc-btn--large">
+                                                <span class="_button-text">Вход в Моя магазин</span>
+                                            </button>
+                                        </div><!-- /.cc-form__actions -->
+
+                                        <div class="cc-form__actions">
+                                            <button type="submit" class="cc-form__btn cc-btn cc-btn--orange cc-btn--large">
+                                                <a href="/Admins/Reset">Нулиране на полетата</a>
+                                            </button>
+                                        </div><!-- /.cc-form__actions -->
+
+                                        <div class="cc-form__links">
+                                            <div class="cc-form__group">
+                                                <div class="cc-checkbox cc-checkbox--remember">
+                                                    <input type="checkbox" name="remember" id="formRemember">
+
+                                                    <label for="formRemember">
+                                                        Запамети
+                                                    </label>
+                                                </div><!-- / checkbox-->
+
+                                                <a href="https://zora.bg/admin/password/reset" class="cc-form__link">
+                                                    Забравена?
+                                                </a><!-- /.cc-form__link -->
+                                            </div><!-- /.cc-form__group -->
+
+                                            <div class="cc-form__group cc-form__group--social">
+                                                <a href="https://zora.bg/admin/login/with/google" class="cc-btn-icon">
+                                                    <figure>
+                                                        <img src="https://cloudcart.com/assets/images/temp/ico-google.webp?1653934286" alt="Icon" width="22" height="22">
+                                                    </figure>
+
+                                                    <span>
+                                                        Вход с Google
+                                                    </span>
+                                                </a>
+
+                                                <a href="https://zora.bg/admin/login/with/facebook" class="cc-btn-icon">
+                                                    <figure>
+                                                        <img src="https://cloudcart.com/assets/images/svg/ico-facebook.svg?1653934286" alt="Icon">
+                                                    </figure>
+
+                                                    <span>
+                                                        Вход с Facebook
+                                                    </span>
+                                                </a>
+                                            </div><!-- /.cc-form__group -->
+                                        </div><!-- /.cc-form__links -->
+
+                                        <div class="cc-form__foot">
+                                        </div><!-- /.cc-form__foot -->
+                                    </form>
+                                </div><!-- /.cc-form-login -->
+                            </aside><!-- /.cc-section__aside -->
+                        </div><!-- /.cc-section__inner -->
+                    </div><!-- /.cc-shell -->
+                </section><!-- /.cc-section-login -->
+            }
+
+        </div><!-- /.cc-main -->
+
+    </div><!-- /.wrapper -->
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cloudcart.com/js/manifest.js?1653934286"></script>
+    <script src="https://cloudcart.com/js/vendor.js?1653934286"></script>
+    <script src="https://cloudcart.com/js/main.js?1653934286"></script>
+</body>
+</html>

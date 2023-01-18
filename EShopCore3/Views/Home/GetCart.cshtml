@@ -1,0 +1,78 @@
+﻿@{
+    var cart = new List<EShopCore3.ViewModels.CartViewModel>();
+    var itemsSession = Context.Session.Get<List<CartViewModel>>("cartItems");
+    var userSession = Context.Session.Get<List<User>>("userAccount");
+    if (itemsSession != null)
+    {
+        cart = itemsSession;
+    }
+    <div class="sinlge-bar shopping" id="sinlge-bar shopping">
+        @{
+            decimal viewNumInCart = 0;
+            foreach (var item in cart)
+            {
+                viewNumInCart += item.Quantity;
+            }
+            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">@viewNumInCart</span></a>}
+        <!-- Shopping Item -->
+        <div class="shopping-item">
+            <div class="dropdown-cart-header">
+                @{
+                    decimal numItemInCart = 0;
+                    foreach (var item in cart)
+                    {
+                        numItemInCart += item.Quantity;
+                    }
+                    if (numItemInCart > 1)
+                    {
+                        <span>@numItemInCart Items</span>
+                    }
+                    else
+                    {
+                        <span>@numItemInCart Item</span>
+                    }
+                }
+                <a href="/Home/Cart">View Cart</a>
+            </div>
+            <ul class="shopping-list">
+                @{
+                    decimal totalCash = 0;
+                    foreach (var item in cart)
+                    {
+                        totalCash += item.Total;
+                        <li>
+                            <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                            <a class="cart-img" href="/Home/CurrentModel?id=@item.ItemId"><img src="@item.ImagePath" alt="#"></a>
+                            <h4><a href="#">@item.ItemName</a></h4>
+                            @if (item.PromoPrice != 0)
+                            {
+                                <p class="quantity">@item.Quantity x - <span class="amount">$@item.PromoPrice</span></p>
+                            }
+                            else
+                            {
+                                <p class="quantity">@item.Quantity x - <span class="amount">$@item.UnitPrice</span></p>
+                            }
+                        </li>
+                    }
+                }
+            </ul>
+            <div class="bottom">
+                <div class="total">
+                    <span>Total</span>
+                    <span class="total-amount">$@totalCash</span>
+                </div>
+            </div>
+            @{
+                    if (userSession != null)
+                    {
+                        <a href="/Home/CheckoutLoggedIn" class="btn animate">Checkout</a>
+                    }
+                    else
+                    {
+                        <a href="/Users/Login" class="btn animate">Checkout</a>
+                    }
+                }
+        </div>
+        <!--/ End Shopping Item -->
+    </div>
+}
