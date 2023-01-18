@@ -13,7 +13,10 @@ namespace EShopCore3.Controllers
     public class AdminsController : Controller
     {
         private readonly EShopCore3Context _context;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public AdminsController(EShopCore3Context context)
         {
             _context = context;
