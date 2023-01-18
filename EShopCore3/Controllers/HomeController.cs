@@ -115,7 +115,7 @@ namespace EShopCore3.Controllers
 
             if (!string.IsNullOrEmpty(searchItem))
             {
-                itemsQry = itemsQry.Where(model => model.ItemName.StartsWith(searchItem));
+                itemsQry = itemsQry.Where(model => model.Gender.StartsWith(searchItem));
                 //HttpContext.Session.Set("SearchItem", itemsQry.ToList());
             }
 
@@ -276,6 +276,7 @@ namespace EShopCore3.Controllers
 
         public IActionResult BlogSingleSidebar()
         {
+            InitialCategory();
             return View();
         }
 
