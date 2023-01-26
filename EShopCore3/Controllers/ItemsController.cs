@@ -33,22 +33,22 @@ namespace EShopCore3.Controllers
             categoryItemList.AddRange(categoryItemQry.Distinct());
             ViewBag.categoryItem = new SelectList(categoryItemList);
 
-            List<Item> items = _context.Item.ToList();
+//            List<Item> items = _context.Item.ToList();
 
-            const int pageSize = 3;
-            if (pg < 1)
-            {
-                pg = 1;
-            }
-//////////
-            int rescCount = items.Count();
-            var pager = new Pager(rescCount, pg, pageSize);
-            int recSkip = (pg - 1) * pageSize;
-            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+//            const int pageSize = 3;
+//            if (pg < 1)
+//            {
+//                pg = 1;
+//            }
+////////////
+//            int rescCount = items.Count();
+//            var pager = new Pager(rescCount, pg, pageSize);
+//            int recSkip = (pg - 1) * pageSize;
+//            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
 
-            ViewBag.Pager = pager;
+//            ViewBag.Pager = pager;
 
-            return View(data);
+            return View(_context.Item.ToList());
         }
 
         public IActionResult Index(int pg, string categoryItem, string searchItem)
@@ -75,23 +75,23 @@ namespace EShopCore3.Controllers
                 itemQry = itemQry.Where(model => model.Category == categoryItem);
             }
 
-           var items = itemQry;
+           //var items = itemQry;
 
-            //var pg = 1;
-            const int pageSize = 3;
-            if (pg < 1)
-            {
-                pg = 1;
-            }
+           // //var pg = 1;
+           // const int pageSize = 3;
+           // if (pg < 1)
+           // {
+           //     pg = 1;
+           // }
 
-            int rescCount = items.Count();
-            var pager = new Pager(rescCount, pg, pageSize);
-            int recSkip = (pg - 1) * pageSize;
-            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+           // int rescCount = items.Count();
+           // var pager = new Pager(rescCount, pg, pageSize);
+           // int recSkip = (pg - 1) * pageSize;
+           // var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
 
-            ViewBag.Pager = pager;
+           // ViewBag.Pager = pager;
 
-            return View(data);
+            return View(itemQry);
         }
 
         // GET: Items/Details/5
